@@ -4,6 +4,7 @@
  */
 package entity;
 
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,6 @@ import javax.persistence.TemporalType;
  *
  * @author User
  */
-
 @Entity
 @Table(name = "user")
 public class User extends BaseEntity {
@@ -95,29 +95,26 @@ public class User extends BaseEntity {
     /**
      * @return the last_seen
      */
-    public String getLast_seen() {
+    public Date getLast_seen() {
         return last_seen;
     }
 
     /**
      * @param last_seen the last_seen to set
      */
-    public void setLast_seen(String last_seen) {
+    public void setLast_seen(Date last_seen) {
         this.last_seen = last_seen;
     }
 
-    /**
-     * @return the profile_pic
-     */
-    public String getProfile_pic() {
-        return profile_pic;
-    }
+   
 
-    /**
-     * @param profile_pic the profile_pic to set
-     */
-    public void setProfile_pic(String profile_pic) {
-        this.profile_pic = profile_pic;
+    public User(String first_name, String last_name, String country_code, String contact_number) {
+        
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.country_code = country_code;
+        this.contact_number = contact_number;
+     
     }
 
     @Id
@@ -138,10 +135,7 @@ public class User extends BaseEntity {
     private String contact_number;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_seen", nullable = false)
-    private String last_seen;
-
-    @Column(name = "profile_pic", length = 100, nullable = false)
-    private String profile_pic;
+    @Column(name = "last_seen", nullable = true)
+    private Date last_seen;
 
 }

@@ -21,7 +21,75 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "friend_list")
-public class FriendList {
+public class FriendList extends BaseEntity{
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the user_id
+     */
+    public User getUser_id() {
+        return user_id;
+    }
+
+    /**
+     * @param user_id the user_id to set
+     */
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
+    }
+
+    /**
+     * @return the friend_id
+     */
+    public User getFriend_id() {
+        return friend_id;
+    }
+
+    /**
+     * @param friend_id the friend_id to set
+     */
+    public void setFriend_id(User friend_id) {
+        this.friend_id = friend_id;
+    }
+
+    /**
+     * @return the status_id
+     */
+    public Status getStatus_id() {
+        return status_id;
+    }
+
+    /**
+     * @param status_id the status_id to set
+     */
+    public void setStatus_id(Status status_id) {
+        this.status_id = status_id;
+    }
+
+    public FriendList() {
+    }
+
+    public FriendList(int id, User user_id, User friend_id) {
+        this.id = id;
+        this.user_id = user_id;
+        this.friend_id = friend_id;
+    }
+    
+    
+    
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
