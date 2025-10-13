@@ -38,17 +38,17 @@ public class Chat extends BaseEntity{
     }
 
     /**
-     * @return the sender_id
+     * @return the sender
      */
-    public User getSender_id() {
-        return sender_id;
+    public User getSender() {
+        return sender;
     }
 
     /**
-     * @param sender_id the sender_id to set
+     * @param sender the sender to set
      */
-    public void setSender_id(User sender_id) {
-        this.sender_id = sender_id;
+    public void setSender(User sender) {
+        this.sender = sender;
     }
 
     /**
@@ -66,17 +66,17 @@ public class Chat extends BaseEntity{
     }
 
     /**
-     * @return the recipient_id
+     * @return the recipient
      */
-    public User getRecipient_id() {
-        return recipient_id;
+    public User getRecipient() {
+        return recipient;
     }
 
     /**
-     * @param recipient_id the recipient_id to set
+     * @param recipient the recipient to set
      */
-    public void setRecipient_id(User recipient_id) {
-        this.recipient_id = recipient_id;
+    public void setRecipient(User recipient) {
+        this.recipient = recipient;
     }
 
     /**
@@ -94,18 +94,38 @@ public class Chat extends BaseEntity{
     }
 
     /**
-     * @return the status_id
+     * @return the status
      */
-    public Status getStatus_id() {
-        return status_id;
+    public Status getStatus() {
+        return status;
     }
 
     /**
-     * @param status_id the status_id to set
+     * @param status the status to set
      */
-    public void setStatus_id(Status status_id) {
-        this.status_id = status_id;
+    public void setStatus(Status status) {
+        this.status = status;
     }
+
+
+ 
+
+    public Chat() {
+    }
+ public Chat(User fromUser1, String chatText, User touser, String string, Status SENT) {
+    }
+
+    public Chat(int id, User sender, String message, User recipient, String file) {
+        this.id = id;
+        this.sender = sender;
+        this.message = message;
+        this.recipient = recipient;
+        this.file = file;
+    }
+  
+    
+    
+    
       @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -113,19 +133,19 @@ public class Chat extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "sender_id", nullable = false)
-    private User sender_id;
+    private User sender;
 
     @Column(name = "message", columnDefinition = "LONGTEXT", nullable = false)
     private String message;
 
     @ManyToOne
     @JoinColumn(name = "recipient_id", nullable = false)
-    private User recipient_id;
+    private User recipient;
 
     @Column(name = "file", columnDefinition = "LONGTEXT", nullable = false)
     private String file;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_id", length = 45)
-    private Status status_id = Status.SENT;
+    @Column(name = "status", length = 45)
+    private Status status = Status.SENT;
 }

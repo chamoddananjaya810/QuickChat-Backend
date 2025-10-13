@@ -12,9 +12,9 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
                 <mapping class="entity.BaseEntity"></mapping>
-<!--        <mapping class="entity.Chat"></mapping>-->
+        <mapping class="entity.Chat"></mapping>
         <mapping class="entity.User"></mapping>
-<!--        <mapping class="entity.FriendList"></mapping>-->
+        <mapping class="entity.FriendList"></mapping>
     </session-factory>
 </hibernate-configuration>
 

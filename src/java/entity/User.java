@@ -92,18 +92,7 @@ public class User extends BaseEntity {
         this.contact_number = contact_number;
     }
 
-    /**
-     * @return the last_seen
-     */
-    public Date getLast_seen() {
-        return last_seen;
-    }
-
-    /**
-     * @param last_seen the last_seen to set
-     */
-    public void setLast_seen(Date last_seen) {
-        this.last_seen = last_seen;
+    public User() {
     }
 
    
@@ -134,8 +123,6 @@ public class User extends BaseEntity {
     @Column(name = "contact_number", length = 10, nullable = false)
     private String contact_number;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_seen", nullable = true)
-    private Date last_seen;
+
 
 }

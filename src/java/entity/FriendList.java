@@ -4,6 +4,7 @@
  */
 package entity;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "friend_list")
-public class FriendList extends BaseEntity{
+public class FriendList implements Serializable {
 
     /**
      * @return the id
@@ -66,45 +67,63 @@ public class FriendList extends BaseEntity{
     }
 
     /**
-     * @return the status_id
+     * @return the nick_name
      */
-    public Status getStatus_id() {
-        return status_id;
+    public String getNick_name() {
+        return nick_name;
     }
 
     /**
-     * @param status_id the status_id to set
+     * @param nick_name the nick_name to set
      */
-    public void setStatus_id(Status status_id) {
-        this.status_id = status_id;
+    public void setNick_name(String nick_name) {
+        this.nick_name = nick_name;
     }
+
+    /**
+     * @return the status
+     */
+    public Status getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
 
     public FriendList() {
     }
 
-    public FriendList(int id, User user_id, User friend_id) {
-        this.id = id;
+    public FriendList(User user_id, User friend_id, String nick_name) {
+        
         this.user_id = user_id;
         this.friend_id = friend_id;
+        this.nick_name = nick_name;
     }
-    
-    
-    
+
+   
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
-    
+
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false) 
+    @JoinColumn(name = "user_id", nullable = false)
     private User user_id;
 
     @ManyToOne
-     @JoinColumn(name = "friend_id", nullable = false) 
+    @JoinColumn(name = "friend_id", nullable = false)
     private User friend_id;
 
+    @Column(name = "nick_name", length = 45, nullable = false)
+    private String nick_name;
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_id", length = 45)
-    private Status status_id = Status.SENT;
+    @Column(name = "status", length = 45)
+    private Status status = Status.SENT;
 }
