@@ -79,6 +79,20 @@ public class User extends BaseEntity {
     }
 
     /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
      * @return the contact_number
      */
     public String getContact_number() {
@@ -95,15 +109,13 @@ public class User extends BaseEntity {
     public User() {
     }
 
-   
+    public User(String first_name, String last_name, String country_code, String password, String contact_number) {
 
-    public User(String first_name, String last_name, String country_code, String contact_number) {
-        
         this.first_name = first_name;
         this.last_name = last_name;
         this.country_code = country_code;
+        this.password = password;
         this.contact_number = contact_number;
-     
     }
 
     @Id
@@ -120,9 +132,10 @@ public class User extends BaseEntity {
     @Column(name = "country_code", length = 45, nullable = false)
     private String country_code;
 
+    @Column(name = "password", length = 45, nullable = false)
+    private String password;
+
     @Column(name = "contact_number", length = 10, nullable = false)
     private String contact_number;
-
-
 
 }

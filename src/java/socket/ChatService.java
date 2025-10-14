@@ -32,7 +32,7 @@ public class ChatService {
 
     private static final ConcurrentHashMap<Integer, Session> SESSIONS = new ConcurrentHashMap<>();
     private static final Gson GSON = new Gson();
-    private static final String URL = "https://570ab5689d7c.ngrok-free.app"; // ngrok proxy url
+    private static final String URL = "https://c943e506b5f4.ngrok-free.app"; // ngrok proxy url
 
     public static void register(int userId, Session session) {
         SESSIONS.put(userId, session);

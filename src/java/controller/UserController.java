@@ -36,11 +36,12 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       System.out.println("oj");
+        System.out.println("oj");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String contryCode = request.getParameter("countryCode");
         String contactNo = request.getParameter("contactNo");
+        String password = request.getParameter("password");
         Part profileImage = request.getPart("profileImage");
 
         System.out.println(firstName);
@@ -64,6 +65,9 @@ public class UserController extends HttpServlet {
         } else if (contactNo.isEmpty()) {
 
             responseObject.addProperty("message", "contact no is required");
+        } else if (password.isEmpty()) {
+
+            responseObject.addProperty("message", "password no is required");
         } else if (profileImage == null) {
 
             responseObject.addProperty("message", "Select a Profile");
@@ -78,15 +82,14 @@ public class UserController extends HttpServlet {
                 responseObject.addProperty("message", "This contact ni already axists");
             } else {
 //                user = new User(firstName, lastName, contryCode, contactNo);
-                user=new User(firstName, lastName, contryCode, contactNo);
+                user = new User(firstName, lastName, contryCode, password, contactNo);
                 user.setCreated_at(new Date());
                 user.setUpdated_at(new Date());
-           
 
-                Transaction tr= s.beginTransaction();
-                     int id = (int) s.save(user);
-                     tr.commit();
-               
+                Transaction tr = s.beginTransaction();
+                int id = (int) s.save(user);
+                tr.commit();
+
                 responseObject.add("user", gson.toJsonTree(user));
 
                 //image uploading
@@ -96,22 +99,20 @@ public class UserController extends HttpServlet {
 
                 File profileFolder = new File(newPath, String.valueOf(id));
                 if (!profileFolder.exists()) {
-                      profileFolder.mkdirs();
+                    profileFolder.mkdirs();
                 }
-              
 
                 File file1 = new File(profileFolder, "image1.png");
-                
+
                 Files.copy(profileImage.getInputStream(), file1.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
                 responseObject.addProperty("status", true);
-                 s.close();
+                s.close();
             }
         }
 
         response.setContentType("application/json");
         response.getWriter().write(gson.toJson(responseObject));
     }
-
 
 }
