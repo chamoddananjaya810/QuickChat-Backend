@@ -25,6 +25,20 @@ import javax.persistence.Table;
 public class FriendList implements Serializable {
 
     /**
+     * @return the status
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    /**
      * @return the id
      */
     public int getId() {
@@ -83,16 +97,6 @@ public class FriendList implements Serializable {
     /**
      * @return the status
      */
-    public Status getStatus() {
-        return status;
-    }
-
-    /**
-     * @param status the status to set
-     */
-    public void setStatus(Status status) {
-        this.status = status;
-    }
 
 
     public FriendList() {
@@ -123,7 +127,7 @@ public class FriendList implements Serializable {
     @Column(name = "nick_name", length = 45, nullable = false)
     private String nick_name;
 
-    @Enumerated(EnumType.STRING)
+   
     @Column(name = "status", length = 45)
-    private Status status = Status.SENT;
+    private String status ;
 }
