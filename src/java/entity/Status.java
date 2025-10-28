@@ -16,5 +16,6 @@ public enum Status {
     ,DELETE
     ,ONLINE
     ,OFFLINE
+    ,FRIENDS
     
 }

@@ -27,16 +27,21 @@ public class FriendList implements Serializable {
     /**
      * @return the status
      */
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
+
+    /**
+     * @return the status
+     */
+ 
 
     /**
      * @return the id
@@ -128,6 +133,10 @@ public class FriendList implements Serializable {
     private String nick_name;
 
    
+
+    
+    
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 45)
-    private String status ;
+    private Status status = Status.SENT;
 }

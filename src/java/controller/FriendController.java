@@ -2,6 +2,7 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import entity.FriendList; // FriendList entity එක import කරගන්න
+import entity.Status;
 import entity.User;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -75,7 +76,7 @@ public class FriendController extends HttpServlet {
                     newFriend.setNick_name(nickName);
                     newFriend.setUser_id(mainUser); // The user who is adding the friend
                     newFriend.setFriend_id(friendUser); // The user who is being added as a friend
-                    newFriend.setStatus("FRIENDS"); // Set a default status
+                    newFriend.setStatus(Status.FRIENDS); // Set a default status
 
                    Transaction tr = s.beginTransaction();
                     s.save(newFriend);
